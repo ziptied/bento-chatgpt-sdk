@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Bento OAuth bridge network flow</title>
+  <desc id="desc">ChatGPT plugin authentication and MCP calls flow through Bento's OAuth bridge, which injects per-request Bento credentials into the upstream MCP server.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#162235"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDBA74"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity=".24"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#FB923C"/>
+    </marker>
+    <style>
+      .title { font: 700 42px Inter, Arial, sans-serif; fill: #F8FAFC; }
+      .subtitle { font: 400 20px Inter, Arial, sans-serif; fill: #CBD5E1; }
+      .eyebrow { font: 700 16px Inter, Arial, sans-serif; letter-spacing: 2px; fill: #FDBA74; }
+      .node-title { font: 700 25px Inter, Arial, sans-serif; fill: #F8FAFC; }
+      .node-copy { font: 400 17px Inter, Arial, sans-serif; fill: #CBD5E1; }
+      .small { font: 600 15px Inter, Arial, sans-serif; fill: #CBD5E1; }
+      .step { font: 700 17px Inter, Arial, sans-serif; fill: #0B1220; }
+      .label { font: 600 16px Inter, Arial, sans-serif; fill: #E2E8F0; }
+      .note { font: 500 16px Inter, Arial, sans-serif; fill: #FED7AA; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <text x="80" y="80" class="eyebrow">BENTO × CHATGPT / MCP</text>
+  <text x="80" y="132" class="title">OAuth bridge and downstream MCP calls</text>
+  <text x="80" y="170" class="subtitle">Credentials stay in the consent flow; ChatGPT receives only a short-lived bearer token.</text>
+
+  <rect x="80" y="225" width="310" height="230" rx="24" fill="#132238" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <circle cx="130" cy="275" r="26" fill="#F97316"/>
+  <path fill="#101828" d="M119 263h15c8 0 13 4 13 10 0 4-2 7-6 9 5 2 8 5 8 10 0 8-6 12-15 12h-15v-41Zm7 9v8h8c3 0 5-2 5-4s-2-4-5-4h-8Zm0 16v9h9c3 0 5-2 5-5 0-2-2-4-5-4h-9Z"/>
+  <text x="175" y="282" class="node-title">ChatGPT plugin</text>
+  <text x="110" y="335" class="node-copy">Plugin package + MCP client</text>
+  <text x="110" y="363" class="node-copy">• discovers OAuth metadata</text>
+  <text x="110" y="389" class="node-copy">• calls Bento tools</text>
+  <text x="110" y="415" class="node-copy">• never receives Bento keys</text>
+
+  <rect x="475" y="225" width="410" height="350" rx="24" fill="#17263C" stroke="#FB923C" stroke-width="2" filter="url(#shadow)"/>
+  <text x="515" y="282" class="node-title">Bento OAuth bridge</text>
+  <text x="515" y="314" class="small">chatgpt-mcp.bentonow.com</text>
+  <rect x="515" y="348" width="330" height="58" rx="12" fill="#1E3A5F"/>
+  <circle cx="545" cy="377" r="16" fill="#FDBA74"/><text x="540" y="383" class="step">1</text>
+  <text x="575" y="383" class="label">/authorize + PKCE consent</text>
+  <rect x="515" y="420" width="330" height="58" rx="12" fill="#1E3A5F"/>
+  <circle cx="545" cy="449" r="16" fill="#FDBA74"/><text x="540" y="455" class="step">2</text>
+  <text x="575" y="455" class="label">/token → encrypted bearer</text>
+  <rect x="515" y="492" width="330" height="58" rx="12" fill="#1E3A5F"/>
+  <circle cx="545" cy="521" r="16" fill="#FDBA74"/><text x="540" y="527" class="step">3</text>
+  <text x="575" y="527" class="label">/mcp → per-request proxy</text>
+
+  <rect x="1010" y="225" width="430" height="350" rx="24" fill="#132238" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1050" y="282" class="node-title">Bento upstream MCP</text>
+  <text x="1050" y="314" class="small">mcp.bentonow.com/mcp</text>
+  <text x="1050" y="365" class="node-copy">Tool execution and Bento API access</text>
+  <text x="1050" y="407" class="node-copy">Receives only request-scoped:</text>
+  <rect x="1050" y="430" width="350" height="100" rx="12" fill="#0F1B2D" stroke="#334155"/>
+  <text x="1070" y="460" class="note">X-Bento-Publishable-Key</text>
+  <text x="1070" y="486" class="note">X-Bento-Secret-Key</text>
+  <text x="1070" y="512" class="note">X-Bento-Site-UUID</text>
+
+  <path d="M390 340 H475" fill="none" stroke="#94A3B8" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="402" y="322" class="label">OAuth discovery</text>
+  <path d="M885 390 H1010" fill="none" stroke="#FB923C" stroke-width="3" marker-end="url(#arrow-orange)"/>
+  <text x="900" y="372" class="label">MCP JSON-RPC calls</text>
+
+  <rect x="80" y="650" width="1360" height="230" rx="24" fill="#0F1B2D" stroke="#334155" stroke-width="2"/>
+  <text x="120" y="705" class="node-title">Credential and data boundary</text>
+  <text x="120" y="747" class="node-copy">Browser consent page → bridge</text>
+  <text x="120" y="775" class="node-copy">The user enters site UUID, publishable key, and secret key directly into the bridge.</text>
+  <text x="120" y="825" class="node-copy">Bridge → upstream MCP</text>
+  <text x="120" y="853" class="node-copy">The bridge decrypts the token in memory, injects Bento headers, and returns only tool results.</text>
+  <text x="965" y="747" class="note">No credentials in chat prompts</text>
+  <text x="965" y="775" class="note">No credential database</text>
+  <text x="965" y="803" class="note">Rotate AUTH_SECRET to invalidate tokens</text>
+  <text x="965" y="831" class="note">Local test: localhost:8787/mcp</text>
+
+  <path d="M680 575 V650" fill="none" stroke="#FB923C" stroke-width="3" marker-end="url(#arrow-orange)"/>
+  <text x="705" y="620" class="label">encrypted token boundary</text>
+</svg>

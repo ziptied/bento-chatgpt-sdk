@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "bento": {
+      "type": "http",
+      "url": "https://chatgpt-mcp.bentonow.com/mcp",
+      "oauth_resource": "https://chatgpt-mcp.bentonow.com/mcp"
+    }
+  }
+}

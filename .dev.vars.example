@@ -1,0 +1,6 @@
+# Copy to .dev.vars for local development. Never commit real credentials.
+AUTH_SECRET=replace-with-at-least-32-random-characters
+PUBLIC_BASE_URL=http://localhost:8787
+BENTO_MCP_URL=https://mcp.bentonow.com/mcp
+# Optional: comma-separated redirect URIs for local OAuth clients.
+# OAUTH_REDIRECT_URIS=https://chatgpt.com/connector_platform_oauth_redirect

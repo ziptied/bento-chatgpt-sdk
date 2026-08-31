@@ -1,0 +1,47 @@
+{
+  "name": "bento-chatgpt-sdk",
+  "version": "0.1.0+codex.20260831045002",
+  "description": "Connect ChatGPT to Bento for subscriber, email, automation, analytics, deliverability, and support workflows.",
+  "author": {
+    "name": "Bento",
+    "email": "support@bentonow.com",
+    "url": "https://bentonow.com"
+  },
+  "homepage": "https://bentonow.com",
+  "repository": "https://github.com/bentonow/mcp-server",
+  "license": "MIT",
+  "keywords": [
+    "bento",
+    "email marketing",
+    "automation",
+    "analytics",
+    "support"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Bento for ChatGPT",
+    "shortDescription": "Run Bento marketing and support workflows in ChatGPT.",
+    "longDescription": "Connect ChatGPT to a Bento site through a hosted MCP server. Review subscribers, broadcasts, sequences, workflows, analytics, deliverability, and Bento Chat conversations, then create or update records when you approve the action.",
+    "developerName": "Bento",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://bentonow.com",
+    "privacyPolicyURL": "https://bentonow.com/legal/privacy",
+    "termsOfServiceURL": "https://bentonow.com/legal/terms",
+    "defaultPrompt": [
+      "Use Bento to check a subscriber's status.",
+      "Use Bento to review email deliverability for the last 24 hours.",
+      "Use Bento to draft a broadcast and wait for my approval before sending."
+    ],
+    "brandColor": "#F97316",
+    "composerIcon": "./logo.svg",
+    "logo": "./logo.svg",
+    "logoDark": "./logo.svg",
+    "screenshots": [
+      "./assets/oauth-bridge-flow.png"
+    ]
+  }
+}

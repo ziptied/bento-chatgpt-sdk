@@ -1,0 +1,22 @@
+{
+  "name": "bento-chatgpt-sdk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OAuth bridge and ChatGPT plugin package for Bento's remote MCP server.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "dry-run": "wrangler deploy --dry-run",
+    "check": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vitest": "4.1.7",
+    "wrangler": "4.94.0"
+  }
+}
